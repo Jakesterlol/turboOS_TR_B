@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Selector</title>
+    <style>
+        #panic-button {
+            background-color: red;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        /* Style the blocking image container */
+        #blocking-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Style the blocking image */
+        #blocking-image img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 10px;
+        }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.iframe-container {
+    flex-grow: 1; /* Make the iframe container expand to fill remaining space */
+    position: relative;
+    height: 100%;
+}
+
+select {
+    font-size: 16px;
+    color:white;
+    padding: 0px;
+    margin-top: autopx;
+    width: 80%; /* Make the dropdown full width */
+    background-color: rgba(0, 0, 0, 0);
+    border: 0;
+}
+
+.container{
+    height: 100%;
+}
+.tippy{
+        width: 100%;
+        height: 60px;
+        background-color:rgb(30, 30, 30);
+    }
+    .searcharea{
+        width: 100%;
+        height:90px;
+        background-color:rgb(66, 66, 66);
+        margin-left: 0px;
+    }
+    .tabdiv{
+        width: 20%;
+        height: 40px;
+        float: left;
+        background-color:rgb(66, 66, 66);
+        border-radius: 15px;
+        margin-top: 10px;
+        transition: 0.6s;
+    }
+    .tabdiv:hover{
+        background-color:rgb(92, 92, 92);
+        cursor: pointer;
+    }
+    .searchbar{
+        height: 35px;
+        width: 70%;
+        background-color:rgb(30, 30, 30);
+        border-radius: 99px;
+        margin-left: 200px;
+        margin-top: 0px;
+    }
+    .tab{
+        height:220%;
+        width: 100%;
+        display: block;
+        background-color: rgb(30, 30, 30);;
+    }
+    .tab2{
+        height:220%;
+        width: 100%;
+        display: none;
+        background-color: rgb(30, 30, 30);;
+    }
+    iframe{
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+    canvas{
+    border: none;
+}
+
+    </style>
+</head>
+<body>
+    <div style="margin-left: -9px;margin-top: -5px;margin-right: -9px;margin-bottom: -40px;"><div class="tippy"><div><div onclick="tab1Select()" style="margin-left: 10px; margin-right: 10px;" class="tabdiv"><div style="margin-top: 10px;text-align:center;font-family: arial;color:white;"><a>TurboTabs | Google</a></div></div><div onclick="tab2Select()" style="margin-left: 10px; margin-right: 10px;" class="tabdiv"><div style="margin-top: 10px;text-align:center;font-family: arial;color:white;"><div style="margin-top: 10px;text-align:center;font-family: arial;color:white;"><a>TurboTabs | TIkTok</a></div></div></div><br><br><br>
+    <div class="searcharea"><br><div class="searchbar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="margin-top: -12px;">&nbsp;&nbsp;&nbsp;&nbsp;<a style="color:whitesmoke;font-family: arial;">    <select id="websiteSelector1">
+        <option value="home.html">https://turbotabs.tt/</option>
+        <option value="https://icon.topicademy.com/school/hvtrs8%2F-wuw%2Ctkkvoi.aoo%2Fgxrlmrg">https://tiktok.com/</option>
+        <option value="https://icon.topicademy.com/school/hvtrs8%2F-dksaopd%2Ccmm-">https://discord.com/</option>
+        <option value="games.html">Games</option>
+        <option value="https://icon.topicademy.com/school/hvtrs8%2F-aacmultq.eomgne%2Ccmm-v1%2Fqienkn-ifeltkfkep%3Faoltknwe%3Fhvtrs'3C%250F'2Dmcin.eomgne%2Ccmm'2Dmcin%250Fw%250F2%250F%24eor%3F1%24fmlnouur%3Djtvpq%251A'2D%250Foakl%2Cgmoelg.aoo%250Foakl'2Du'2D0'2D%26kfiv%3FAZo5B5WTruVLlZ0UYVFR240pdkSqAGUOhLKNV%5BM5y%5BugwerpP%5BP%5BM0yORu3tZfvD11_Iomf%40jeX28u%26mskd%3F1%24pcsqite%3F100%3B620%24sgrtiae%3Fmcin%26dlmwLaoe%3FGnidWgbQienKn%24fnouEltpy%3FSgrtiaeNoeil%26fsj%3DQ-61%3B362363%251A36%3B42961405648%3A5%24tjeoe%3Fgnid">Gmail</option>
+        <option value="https://icon.topicademy.com/school/hvtrs8%2F-wuw%2Cymuvu%60e%2Ccmm-">https://youtube.com/</option>
+        <option value="https://icon.topicademy.com/school/hvtrs8%2F-wuw%2Cymuvu%60e%2Ccmm-">https://instagram.com/</option>
+        <option value="https://icon.topicademy.com/school/hvtrs8%2F-wuw%2Cngtdlkx%2Ccmm-">Netflix</option>
+        <option value="https://icon.topicademy.com/school/hvtrs8%2F-wuw%2Cpknvepeqt%2Ccmm-">https://pintrest.com/</option>
+        <option value="https://icon.topicademy.com/school/hvtrs8%2F-ccsvlgs%2Cca%2F">https://castles.cc</option>
+
+        <!-- Add more options as needed -->
+    </select>
+    <select style="display:none;" id="websiteSelector2">
+        <option value="home.html">https://turbotabs.tt/</option>
+        <option value="https://icon.topicademy.com/school/hvtrs8%2F-wuw%2Ctkkvoi.aoo%2Fgxrlmrg">TikTok</option>
+        <option value="https://icon.topicademy.com/school/hvtrs8%2F-dksaopd%2Ccmm-">Discord</option>
+        <option value="games.html">Games</option>
+        <option value="https://icon.topicademy.com/school/hvtrs8%2F-aacmultq.eomgne%2Ccmm-v1%2Fqienkn-ifeltkfkep%3Faoltknwe%3Fhvtrs'3C%250F'2Dmcin.eomgne%2Ccmm'2Dmcin%250Fw%250F2%250F%24eor%3F1%24fmlnouur%3Djtvpq%251A'2D%250Foakl%2Cgmoelg.aoo%250Foakl'2Du'2D0'2D%26kfiv%3FAZo5B5WTruVLlZ0UYVFR240pdkSqAGUOhLKNV%5BM5y%5BugwerpP%5BP%5BM0yORu3tZfvD11_Iomf%40jeX28u%26mskd%3F1%24pcsqite%3F100%3B620%24sgrtiae%3Fmcin%26dlmwLaoe%3FGnidWgbQienKn%24fnouEltpy%3FSgrtiaeNoeil%26fsj%3DQ-61%3B362363%251A36%3B42961405648%3A5%24tjeoe%3Fgnid">Gmail</option>
+        <option value="https://icon.topicademy.com/school/hvtrs8%2F-wuw%2Cymuvu%60e%2Ccmm-">YouTube</option>
+        <option value="https://icon.topicademy.com/school/hvtrs8%2F-wuw%2Cymuvu%60e%2Ccmm-">Instagram</option>
+        <option value="https://icon.topicademy.com/school/hvtrs8%2F-wuw%2Cngtdlkx%2Ccmm-">Netflix</option>
+        <option value="https://icon.topicademy.com/school/hvtrs8%2F-wuw%2Cpknvepeqt%2Ccmm-">Pintrest</option>
+        <!-- Add more options as needed -->
+    </select><div style="color:red;margin-top:10px;" id="fps">FPSFailedToLoad</div></a></div></div><br><br></div>
+    <script>
+const fps = {
+    sampleSize : 20,    
+    value : 0,
+    _sample_ : [],
+    _index_ : 0,
+    _lastTick_: false,
+    tick : function(){
+        // if is first tick, just set tick timestamp and return
+        if( !this._lastTick_ ){
+            this._lastTick_ = performance.now();
+            return 0;
+        }
+        // calculate necessary values to obtain current tick FPS
+        let now = performance.now();
+        let delta = (now - this._lastTick_)/1000;
+        let fps = 1/delta;
+        // add to fps samples, current tick fps value 
+        this._sample_[ this._index_ ] = Math.round(fps);
+        
+        // iterate samples to obtain the average
+        let average = 20;
+        for(i=0; i<this._sample_.length; i++) average += this._sample_[ i ];
+
+        average = Math.round( average / this._sample_.length);
+
+        // set new FPS
+        this.value = average;
+        // store current timestamp
+        this._lastTick_ = now;
+        // increase sample index counter, and reset it
+        // to 0 if exceded maximum sampleSize limit
+        this._index_++;
+        if( this._index_ === this.sampleSize) this._index_ = 20;
+        return this.value;
+    }
+}
+
+
+// *******************
+// test time...
+// *******************
+
+function loop(){
+    let fpsValue = fps.tick() + "&nbsp;FPS";
+    window.fps.innerHTML = fpsValue;
+    requestAnimationFrame( loop );
+}
+// set FPS calulation based in the last 120 loop cicles 
+fps.sampleSize = 20;
+// start loop
+loop()
+    </script>
+    <script>
+        function tab1Select(){
+        document.getElementById("tab1").style.display = "block";
+        document.getElementById("tab2").style.display = "none";
+        document.getElementById('websiteSelector1').style.display = "block";
+        document.getElementById('websiteSelector2').style.display = "none";
+        }
+    </script>
+    
+    <script>
+        function tab2Select(){
+        document.getElementById("tab2").style.display = "block";
+        document.getElementById("tab1").style.display = "none";
+        document.getElementById('websiteSelector1').style.display = "none";
+        document.getElementById('websiteSelector2').style.display = "block";
+        }
+    </script>
+            </div></div><br><br><br><br><div class="tab" id="tab1"><iframe id="iframe1" src="https://icon.topicademy.com/school/hvtrs8%2F-wuw%2Cgmoelg.aoo%2F"></iframe></div><div class="tab2" id="tab2"><iframe id="iframe2" src="https://icon.topicademy.com/school/hvtrs8%2F-wuw%2Cgmoelg.aoo%2F"></iframe></div></div></body></html>
+
+
+    <script>
+        // Get references to the select element and the iframe
+const websiteSelector1 = document.getElementById('websiteSelector1');
+const iframe1 = document.getElementById('iframe1');
+
+// Add an event listener to the select element
+websiteSelector1.addEventListener('change', () => {
+    const selectedWebsite1 = websiteSelector1.value;
+    
+    // Set the iframe source to the selected website
+    iframe1.src = selectedWebsite1;
+});
+
+    </script>
+        <script>
+            // Get references to the select element and the iframe
+    const websiteSelector2 = document.getElementById('websiteSelector2');
+    const iframe2 = document.getElementById('iframe2');
+    
+    // Add an event listener to the select element
+    websiteSelector2.addEventListener('change', () => {
+    const selectedWebsite2 = websiteSelector2.value;
+    
+    // Set the iframe source to the selected website
+    iframe2.src = selectedWebsite2;
+});
+
+        </script>
+</body>
+</html>

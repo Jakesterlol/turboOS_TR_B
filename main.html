@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boot-Up Simulation</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://4kwallpapers.com/images/wallpapers/windows-11-dark-mode-blue-stock-official-1440x900-5630.jpg")
+        }
+        .updatebtn {
+            background-color: #0078d4;
+            padding: 10px 0;
+            border-radius: 99px;
+            width: 100px;
+            height: 28px;
+            margin-left: 30px;
+            margin-top: 10px;
+            border: none;
+
+        }
+
+        .updatebtn a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        .appcontainer{
+            width: 120px;
+            margin-top: 40px;
+            margin-left: 40px;
+            float: left;
+            height: 150px;
+            background-color: rgb(255,255,255,0.3);
+            border: solid rgb(222, 222, 222) 3px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .appcontainer:hover{
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .taskbar{
+            width: 100%;
+            height: 50px;
+            border-top-right-radius: 35px;
+            border-top-left-radius: 35px;
+            background-color: rgba(42, 71, 97, 0.637);
+            bottom: 0px;
+            position: absolute;
+        }
+        .searchcircle{
+            width: 40px;
+            height: 40px;
+            border-radius: 99px;
+            background-color: black;
+            margin-top: 5px;
+            margin-left: 30px;
+            text-align: center;
+        }
+
+        .appframe1{
+            width: 80%;
+            height: 600px;
+            display:none;
+            background-color: rgb(255,255,255,0.3);
+            background-image: url('https://google.com');
+            border-radius: 15px;
+            margin-top: 30px;
+            margin-left: 135px;
+        }
+        
+        iframe{
+            height: 100%;
+            width: 100%;
+            border: solid white 2px;
+            border-radius: 20px;
+        }
+        .xdiv{
+            background-color: rgb(255, 89, 89);
+            color:white;
+            transition-property: color;
+            transition-duration: 1s;
+            transition-property: background-color;
+            transition-duration: 1s;
+        }
+        .xdiv:hover{
+            background-color: rgb(199, 57, 57);
+            color:rgb(255, 255, 255);
+        }
+    </style>
+</head>
+<body class="bg-image">
+<div id="main" class="main"><div onclick="app1Select()" class="appcontainer"><a><img width="100px;" height="100px;" src="ttlogo.png"><br><br>TurboTabs</a></div><div class="appcontainer"><a><img width="90px;" height="75px;" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png"><br><br>Discord</a></div><div class="appcontainer"></div>
+<!--This is the end of apps-->
+<!--This is the start of the bottom bar-->
+<div style="float:left;" class="taskbar"><div style="float:left;" class="searchcircle"><a style="font-size: 35px;">O</a></div><button class="updatebtn" href="update.html">Update</button><div style="text-align: right;margin-top:-20px;margin-right: 30px;;"><script>var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    
+    today = mm + '/' + dd + '/' + yyyy;
+    document.write(today);</script>&nbsp;&nbsp;&nbsp;<a id="time_span"></a></div></div></div>
+    <script type="text/javascript">
+    var currentTime = new Date()
+    var hours = currentTime.getHours()
+    var minutes = currentTime.getMinutes()
+    if (minutes < 10){
+        minutes = "0" + minutes
+    }
+    var t_str = hours + ":" + minutes + " ";
+    if(hours > 11){
+        t_str += "PM";
+    } else {
+       t_str += "AM";
+    }
+    document.getElementById('time_span').innerHTML = t_str;
+    </script>
+    <script>
+
+        var current_date = new Date ( );
+        var month_names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var day_names = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    
+        var hours = current_date.getHours();
+        var minutes = current_date.getMinutes();
+        var ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+    
+        // Display date in required format
+        var formatted_date = day_names[current_date.getDay()] + ", " + month_names[current_date.getMonth()] + " " + current_date.getDate() + " at " + " " + hours + ":" + minutes +  ampm ;
+        console.log( formatted_date );
+    
+    </script></div><div id="appframe1" class="appframe1"><div style="float: left;background-color: rgb(255,255,255,0.3);width:95%;height:60px;border-bottom-left-radius: 15px;border-top-left-radius: 15px;;"><div style="text-align: center;"><a><br>TurboTabs | Browser</a></div></div><div onclick="app1Close()" class="xdiv" style="cursor: pointer;text-align:center;width: 5%;margin-left: 95%; height:60px;border-top-right-radius: 15px;border-bottom-right-radius: 15px;font-size: 18px;"><br><b">X</b></div><iframe src="index.html"></iframe></div></div></div></div>
+    <script>
+        function app1Select(){
+        document.getElementById("main").style.display = "none";
+        document.getElementById("appframe1").style.display = "block";
+        }
+    </script>
+        <script>
+            function app1Close(){
+            document.getElementById("main").style.display = "block";
+            document.getElementById("appframe1").style.display = "none";
+            }
+        </script>
+    </body>
+    </html>
+</body>
+</html>

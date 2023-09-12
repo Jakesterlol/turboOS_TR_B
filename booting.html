@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boot-Up Simulation</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        #terminal {
+            position: absolute;
+            top: 50px; /* Adjust the top margin to leave space for the message */
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 20px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow: auto;
+        }
+        .bootingstuff{
+            font-size: 20px;
+            color: rgb(0, 255, 85);
+            padding: 0px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow: auto;
+        }
+        .system-message {
+            color: cyan;
+        }
+        .message {
+            color: white;
+        }
+        .retry-failed {
+            color: rgb(255, 85, 85); /* Light red color */
+        }
+        .retry-success {
+            color: rgb(85, 255, 88); /* Light red color */
+        }
+    </style>
+</head>
+<body>
+    <!-- Add the larger-sized message at the top -->
+    <div class="bootingstuff">
+        TurboOS Booting Page
+    </div>
+
+    <div id="terminal"></div>
+
+    <script>
+        // Your JavaScript code remains unchanged.
+        const tuboOS = {
+            system: {
+                Message: "Welcome to TuboOS! Initializing...",
+            },
+        };
+
+        const bootMessages = [
+            { text: "turboOS.system['booting_up: system_turboOS", delay: 1000 }, // 1 second delay
+            { text: "turboOS.system['loading: system.system_files", delay: 3000 }, // 0.5 second delay
+            { text: "turboOS.system['initializing: system.system_accounts", delay: 900 }, // 0.5 second delay
+            { text: "turboOS.system['configuring: system.system_settings", delay: 200 }, // 0.5 second delay
+            { text: "turboOS.system['searching_for: golbal.global_networks", delay: 2000 }, // 0.5 second delay
+            { text: "turboOS.system['contacting: servers.server003", delay: 1000 }, // 1 second delay
+            { text: "turboOS.system['connecting_to: server.server003.connect", delay: 5000 }, // 1 second delay
+            { text: "turboOS.system['failed_action: connecting_to: server.servers003.connect", delay: 200, isRetryFailed: true }, // 1 second delay
+            { text: "turboOS.system['retry", delay: 300, isRetryFailed: true }, // 1 second delay
+            { text: "turboOS.system['retry", delay: 300, isRetryFailed: true }, // 1 second delay
+            { text: "turboOS.system['retry", delay: 300, isRetryFailed: true }, // 1 second delay
+            { text: "turboOS.system['retry", delay: 300, isRetryFailed: true }, // 1 second delay
+            { text: "__________________________", delay: 5000, isRetryFailed: false }, // 1 second delay
+            { text: "turboOS.system['connected_to: server.server003.connect",  delay: 300, isSuccess: true }, // 1 second delay
+        ];
+
+        const terminal = document.getElementById('terminal');
+        let currentMessageIndex = -1;
+
+        function displayNextMessage() {
+            currentMessageIndex++;
+
+            if (currentMessageIndex < bootMessages.length) {
+                const message = bootMessages[currentMessageIndex];
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message');
+                if (message.isRetryFailed) {
+                    messageElement.classList.add('retry-failed'); // Add the retry-failed class for light red color
+                }
+                if (message.isSuccess) {
+                    messageElement.classList.add('retry-success'); // Add the retry-failed class for light red color
+                }
+
+                // Check if the message contains "turboOS.system['"
+                if (message.text.includes("turboOS.system['")) {
+                    const systemMessage = document.createElement('span');
+                    systemMessage.textContent = "turboOS.system['";
+                    systemMessage.classList.add('system-message');
+                    messageElement.appendChild(systemMessage);
+
+                    const restOfMessage = document.createElement('span');
+                    restOfMessage.textContent = message.text.substring(16); // Exclude "turboOS.system['"
+                    messageElement.appendChild(restOfMessage);
+
+                    const cyanBracket = document.createElement('span');
+                    cyanBracket.textContent = "']";
+                    cyanBracket.classList.add('system-message'); // Set color to cyan
+                    messageElement.appendChild(cyanBracket);
+                } else {
+                    messageElement.textContent = message.text;
+                }
+
+                terminal.appendChild(messageElement);
+
+                // Scroll to the bottom of the terminal
+                terminal.scrollTop = terminal.scrollHeight;
+
+                setTimeout(displayNextMessage, message.delay);
+            }
+        }
+
+        displayNextMessage();
+    </script>
+    <script type="text/javascript">
+        (function(){
+           setTimeout(function(){
+             window.location="signin.html";
+           },23000); /* 1000 = 1 second*/
+        })();
+        </script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <style>
+        body {
+            background-color: rgb(26, 26, 26);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .error-message {
+            margin-top: 30px;
+            background-color: #FF6666;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            opacity: 0;
+            display: none; /* Initially hidden */
+            animation: shakeFadeIn 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards,
+                       fadeOutMessage 2s ease-in-out 3s forwards;
+        }
+
+        @keyframes shakeFadeIn {
+            0%, 100% {
+                opacity: 0;
+                transform: translateX(-50%);
+            }
+            10%, 30%, 50%, 70%, 90% {
+                transform: translateX(-55%);
+            }
+            20%, 40%, 60%, 80% {
+                transform: translateX(-45%);
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOutMessage {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .logindiv {
+            width: 500px;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: solid 1px rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .profilepic {
+            width: 120px;
+            height: 120px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: solid 1px rgba(255, 255, 255, 0.3);
+            border-radius: 99px;
+            margin-top: 5%;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+
+        a {
+            color: white;
+            font-family: Arial;
+            font-size: 20px;
+        }
+
+        .password {
+            width: 200px;
+            height: 30px;
+            background-color: rgba(255, 255, 255, 0.0);
+            border: solid 1px rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+        }
+
+        .password:focus {
+            border: solid 1px rgba(255, 255, 255, 0.3);
+            outline: none;
+            color: white;
+            padding-left: 4px;
+        }
+
+        .password::placeholder {
+            color: rgba(255, 255, 255, 0.623);
+        }
+        .background-image {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    display: block;
+    background-image: url('https://4kwallpapers.com/images/wallpapers/windows-11-dark-mode-blue-stock-official-1440x900-5630.jpg');
+    width: 100%;
+    height: 100%;
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: blur(10px);
+  }
+  
+  .content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    margin-left: 450px;
+    margin-right: 20px;
+  }
+
+    </style>
+</head>
+
+<body>
+    <div class="background-image"></div>
+    <div class="content">
+<div class="error-message" id="error-message">Your password is invalid!</div>
+<div class="logindiv">
+    <div class="profilepic">
+        <img height="120px" width="120px" style="border-radius: 99px;"
+             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGzL2yVM7_2eiCbsTFFZD64ZDNJGgmJT-I8Q&usqp=CAU">
+    </div><br>
+    <a>Tristan Berrier<br><br>
+        <input name="pswd" placeholder="&nbsp;Password" class="password" type="password"></input>
+    </a>
+</div></div>
+
+<script>
+    const pswd = document.querySelector('[name="pswd"]');
+    const errorMessage = document.getElementById('error-message');
+
+    pswd.addEventListener('keyup', (e) => {
+        if (e.code === 'Enter') {
+            if (pswd.value === 'qwertyuiop[]') {
+                const url = 'loading.html';
+                window.location.href = url;
+            } else {
+                // Display error message and shake it
+                errorMessage.style.display = 'block';
+                errorMessage.style.animation = 'none';
+                void errorMessage.offsetWidth; // Trigger reflow to restart animation
+                errorMessage.style.animation = 'shakeFadeIn 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards, fadeOutMessage 2s ease-out 3s forwards';
+                setTimeout(() => {
+                errorMessage.style.animation = ''; // Remove animation
+                errorMessage.style.display = 'none'; // Hide the element
+            }, 4000); // Hide after 5 seconds
+            }
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turbotap - Game Store</title>
+    <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #333; /* Dark gray background */
+            color: #fff; /* Text color */
+        }
+
+        header {
+            background-color: #222; /* Dark gray header background */
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            justify-content: flex-start; /* Align the content to the left */
+            align-items: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* Logo styles */
+        .logo {
+            width: 50px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        /* Navigation bar styles */
+        .navbar {
+            background-color: #0078d4;
+            padding: 10px 0;
+            border-radius: 99px;
+            width: 300px;
+            height: 28px;
+            margin-left: 30px;
+            margin-right: -1100px;
+
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        /* Game card styles */
+        .game-card {
+            background-color: #222; /* Dark gray card background */
+            color: #fff; /* Text color */
+            border-radius: 10px;
+            margin: 20px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Box shadow for cards */
+            transition: transform 0.3s, box-shadow 0.3s; /* Animation for hover effect */
+            max-width: 300px;
+            text-align: left;
+            float: left;
+        }
+
+        .game-card:hover {
+            transform: scale(1.05); /* Scale up on hover */
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8); /* Increase box shadow on hover */
+        }
+
+        /* Blue button styles */
+        .blue-button {
+            background-color: #0078d4; /* Windows blue */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .blue-button:hover {
+            background-color: #005ea2; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>TurboTap</h1>
+        </div>
+        <nav width="" class="navbar">
+            <a href="#">Cars</a>
+            <a href="#">Shooters</a>
+            <a href="#">Action</a>
+            <a href="#">Apps</a>
+        </nav>
+        <div style="text-align:right;"><a></div><img width="50px;" height="48px;" style="border: solid white 2px;border-radius:99px;margin-left: 1900px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGzL2yVM7_2eiCbsTFFZD64ZDNJGgmJT-I8Q&usqp=CAU"></a>
+    </header>
+
+    <section id="game-list">
+        <!-- Game cards will be dynamically generated here -->
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Turbotap Game Store</p>
+    </footer>
+
+    <script>
+        // JavaScript code goes here
+        // Sample game data (replace with your actual data)
+        const games = [
+            {
+                title: "Game 1",
+                description: "This is a fun game.",
+                category: "Action",
+                rating: 4.5,
+            },
+            {
+                title: "Game 2",
+                description: "A challenging puzzle game.",
+                category: "Puzzle",
+                rating: 3.8,
+            },
+            // Add more games as needed
+        ];
+
+        // Function to generate game cards and display them
+        function displayGames() {
+            const gameList = document.getElementById("game-list");
+
+            games.forEach((game) => {
+                const gameCard = document.createElement("div");
+                gameCard.classList.add("game-card");
+
+                gameCard.innerHTML = `
+                    <h2>${game.title}</h2>
+                    <p>Description: ${game.description}</p>
+                    <p>Category: ${game.category}</p>
+                    <p>Rating: ${game.rating}</p>
+                    <button class="blue-button">Download</button>
+                `;
+
+                gameList.appendChild(gameCard);
+            });
+        }
+
+        // Call the function to display games when the page loads
+        window.addEventListener("load", displayGames);
+    </script>
+</body>
+</html>
